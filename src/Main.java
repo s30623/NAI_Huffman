@@ -6,14 +6,10 @@ import java.util.Set;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-//        String tekst = "AAAABBBBBBCCCDDEEFFG";
         String tekst = "AABCCCDDEEEFFFFFFFFFFFFGGG";
         PriorityQueue<Litera> litery = new PriorityQueue<>();
         makePQ(litery,tekst);
         System.out.println(litery);
-//        while (!litery.isEmpty()){
-//            System.out.println(litery.poll());
-//        }
         makeHuffman(litery);
         travelHuffman(litery.peek(),"");
     }
@@ -47,27 +43,18 @@ public class Main {
         if (l1.litera.length() == 1){
             System.out.println(l1.litera + ": " + prefix);
         }
-        return;
     }
     static Litera connect(Litera l1, Litera l2, PriorityQueue<Litera> pq){
         Litera l3 = null;
-        if(l1.compareTo(l2) <= -1){
+        if(l1.compareTo(l2) <= 0){
             l3 = new Litera(l1.litera+l2.litera,l1.ilosc+l2.ilosc);
             l3.left = l1;
             l3.right = l2;
-//            System.out.println(l3);
-        }
-        if(l1.compareTo(l2) == 0){
-            l3 = new Litera(l1.litera+l2.litera,l1.ilosc+l2.ilosc);
-            l3.left = l1;
-            l3.right = l2;
-//            System.out.println(l3);
         }
         if(l1.compareTo(l2) >= 1){
             l3 = new Litera(l2.litera+l1.litera,l1.ilosc+l2.ilosc);
             l3.left = l2;
             l3.right = l1;
-//            System.out.println(l3);
         }
         return l3;
     }
